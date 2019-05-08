@@ -1,5 +1,20 @@
 <?
+require "db.php";
+
 class participant{
+   private $id;
+   private $fisrtname;
+   private $lastname;
+   private $mail; 
+
+   public function __construct($id,$n,$fn,$bd)
+  {
+	    $this->id=$id;  
+        $this->firstname=$n;
+        $this->lastname=$fn;
+        $this->mail=$bd;
+  }
+	
 function verifyFields($params)
 {
 	$error = '';
@@ -22,7 +37,8 @@ function verifyFields($params)
 function add($params)
 {
 	global $db;
-
+	$db = SPDO::getInstance();
+	 
 	if (($errors = $this->verifyFields($params)) != '')
 	{
 		return $errors;
